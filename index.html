@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Animation</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
+  background: white;
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  font-size: 24px;
+}
+
+.box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="section">
+  <div class="box">Scroll Down 👇</div>
+</div>
+
+<div class="section">
+  <div class="box">This fades & slides in!</div>
+</div>
+
+<div class="section">
+  <div class="box">You can add more sections like this.</div>
+</div>
+
+<script>
+const boxes = document.querySelectorAll('.box');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+boxes.forEach(box => {
+  observer.observe(box);
+});
+</script>
+
+</body>
+</html>
