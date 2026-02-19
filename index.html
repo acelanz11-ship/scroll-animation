@@ -3,34 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scroll Animation</title>
+<title>Custom Scroll Section</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #f2f2f2;
 }
 
+/* SECTION STYLE */
 .section {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 60px 20px;
 }
 
-.box {
+/* CARD STYLE */
+.card {
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
   opacity: 0;
   transform: translateY(60px);
-  transition: all 0.8s ease-out;
-  background: white;
-  padding: 40px 60px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  font-size: 24px;
+  transition: all 0.9s ease;
 }
 
-.box.show {
+/* IMAGE */
+.card img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* TEXT AREA */
+.text {
+  flex: 1;
+}
+
+.text h2 {
+  margin: 0 0 15px;
+  font-size: 32px;
+}
+
+.text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Animation active */
+.card.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -39,20 +67,45 @@ body {
 
 <body>
 
+<!-- ===== SECTION 1 ===== -->
 <div class="section">
-  <div class="box">Scroll Down 👇</div>
+  <div class="card">
+    
+    <!-- 🔁 REPLACE IMAGE LINK BELOW -->
+    <img src="https://via.placeholder.com/400x300" alt="Your Image">
+    
+    <div class="text">
+      <!-- 🔁 REPLACE TITLE BELOW -->
+      <h2>Your Title Here</h2>
+      
+      <!-- 🔁 REPLACE TEXT BELOW -->
+      <p>
+        Write your description here. You can explain your project,
+        your business, your portfolio, or anything you want.
+      </p>
+    </div>
+
+  </div>
 </div>
 
-<div class="section">
-  <div class="box">This fades & slides in!</div>
-</div>
+<!-- ===== SECTION 2 (Copy & Edit If Needed) ===== -->
+<div class="section" style="background:#ffffff;">
+  <div class="card">
+    
+    <img src="https://via.placeholder.com/400x300" alt="Your Image">
+    
+    <div class="text">
+      <h2>Second Section Title</h2>
+      <p>
+        You can duplicate sections and just change the text and image.
+      </p>
+    </div>
 
-<div class="section">
-  <div class="box">You can add more sections like this.</div>
+  </div>
 </div>
 
 <script>
-const boxes = document.querySelectorAll('.box');
+const cards = document.querySelectorAll('.card');
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -60,14 +113,13 @@ const observer = new IntersectionObserver(entries => {
       entry.target.classList.add('show');
     }
   });
-}, {
-  threshold: 0.3
-});
+}, { threshold: 0.3 });
 
-boxes.forEach(box => {
-  observer.observe(box);
+cards.forEach(card => {
+  observer.observe(card);
 });
 </script>
 
 </body>
 </html>
+
